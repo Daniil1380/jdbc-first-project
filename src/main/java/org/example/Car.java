@@ -6,9 +6,12 @@ public class Car {
 
     private String name;
 
-    public Car(int id, String name) {
+    private String country;
+
+    public Car(int id, String name, String country) {
         this.id = id;
         this.name = name;
+        this.country = country;
     }
 
     @Override
@@ -16,6 +19,7 @@ public class Car {
         return "Car{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }
