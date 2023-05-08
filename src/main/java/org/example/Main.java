@@ -23,5 +23,8 @@ public class Main {
         }
         System.out.println("Connected!");
         System.out.println(carList);
+
+        //отобрать только машины, с id больше 2
+
     }
 }
