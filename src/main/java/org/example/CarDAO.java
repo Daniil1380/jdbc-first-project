@@ -14,21 +14,26 @@ public class CarDAO {
         this.databaseConnection = databaseConnection;
     }
 
-    public List<Car> getAllCars() throws SQLException {
-        Connection connection = databaseConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SELECT_ALL);
+    public List<Car> getAllCars() {
+        try (Connection connection = databaseConnection.getConnection();
+        Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(SELECT_ALL);
 
-        List<Car> cars = new ArrayList<>();
-        while (resultSet.next()) {
-            int id = resultSet.getInt(1);
-            String name = resultSet.getString(2);
-            String country = resultSet.getString(3);
-            Car car = new Car(id, name, country);
-            cars.add(car);
+            List<Car> cars = new ArrayList<>();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String country = resultSet.getString(3);
+                Car car = new Car(id, name, country);
+                cars.add(car);
+            }
+
+            return cars;
         }
+        catch (SQLException e) {
 
-        return cars;
+        }
+        return new ArrayList<>();
     }
 
     public void insertCar(Car car) throws SQLException {
