@@ -23,7 +23,7 @@ public class CarDAO {
         while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
-            String country = resultSet.getString(3;
+            String country = resultSet.getString(3);
             Car car = new Car(id, name, country);
             cars.add(car);
         }
