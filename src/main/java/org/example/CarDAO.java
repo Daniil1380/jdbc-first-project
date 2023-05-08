@@ -6,17 +6,24 @@ import java.util.List;
 
 public class CarDAO {
 
+    private DatabaseConnection databaseConnection;
+
+    private static final String SELECT_ALL = "SELECT * from cars";
+
+    public CarDAO(DatabaseConnection databaseConnection) {
+        this.databaseConnection = databaseConnection;
+    }
+
     public List<Car> getAllCars() throws SQLException {
-        Connection connection =
-                DriverManager.getConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "qwerty");
+        Connection connection = databaseConnection.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * from cars");
+        ResultSet resultSet = statement.executeQuery(SELECT_ALL);
 
         List<Car> cars = new ArrayList<>();
         while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
-            String country = resultSet.getString("country");
+            String country = resultSet.getString(3;
             Car car = new Car(id, name, country);
             cars.add(car);
         }
