@@ -10,7 +10,10 @@ public class Main {
                 = new DatabaseConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "qwerty");
         CarDAO carDAO = new CarDAO(databaseConnection);
 
+        Car car = new Car(100, "qwerty", "ENGLAND");
+
         System.out.println(carDAO.getAllCars());
+        carDAO.insertCar(car);
 
     }
 }

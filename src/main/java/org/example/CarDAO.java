@@ -31,5 +31,12 @@ public class CarDAO {
         return cars;
     }
 
+    public void insertCar(Car car) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+        Statement statement = connection.createStatement();
+        String query = "INSERT INTO cars VALUES (" + car.getId() + ", '" + car.getName() + "', '" + car.getCountry() + "')";
+        statement.execute(query);
+    }
+
 
 }
